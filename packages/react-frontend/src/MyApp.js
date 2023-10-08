@@ -27,6 +27,7 @@ function MyApp() {
 
   function updateList(person) { 
     postUser(person)
+      .then((res) => {if(res.status !== 201){Promise.reject(res.status)}})
       .then(() => setCharacters([...characters, person]))
       .catch((error) => {
         console.log(error);
