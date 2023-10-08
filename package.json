@@ -3,6 +3,10 @@
     "cors": "^2.8.5",
     "create-react-app": "^5.0.1"
   },
+  "scripts": {
+    "start": "cd packages/react-frontend && npm start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "workspaces": [
     "packages/*"
   ],
