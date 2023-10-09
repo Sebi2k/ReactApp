@@ -38,8 +38,11 @@ const findUserById = (id) =>
     users['users_list']
         .find( (user) => user['id'] === id);
 
-const deleteUserById = (id) =>
-    users['users_list'].splice(users['users_list'].findIndex( (user) => user['id'] === id), 1)
+function deleteUserById(id) {
+    const index = users['users_list'].findIndex( (user) => user['id'] === id)
+    if (index === -1) {return false};
+    return users['users_list'].splice(index, 1);
+    }
 
 const findUserByName = (name) => { 
     return users['users_list']
@@ -104,7 +107,7 @@ app.get('/users', (req, res) => {
 app.delete('/users/:id', (req, res) => {
     const id = req.params['id']; //or req.params.id
     let result = deleteUserById(id);
-    if (result === undefined) {
+    if (result === undefined || result === false) {
         res.status(404).send('Resource not found.');
     } else {
         res.status(204).send(result);

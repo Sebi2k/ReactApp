@@ -36,25 +36,25 @@ function MyApp() {
       })
   }
 
-  // function del(index) { 
-  //   removeOneCharacter(index)
-  //     .then((res) => {if(res.status !== 204){Promise.reject(res.status)}})
-  //     .then((json) => setCharacters([...characters, json]))
-  //     .catch((error) => {
-  //       console.log(error);
-  //     })
-  // }
+  function del(index) { 
+    removeOneCharacter(index)
+      .then((res) => {if(res.status !== 204){Promise.reject(res.status)}})
+      .catch((error) => {
+        console.log(error);
+      })
+  }
 
   function removeOneCharacter (index) {
-    // const promise = fetch("Http://localhost:8000/users", {
-    //   method: "DELETE"})
-      
+    const id = characters[index].id;
     const updated = characters.filter((character, i) => {
         return i !== index
     });
+    const promise = fetch("Http://localhost:8000/users/" + id, {
+      method: "DELETE"})
+
     setCharacters(updated);
 
-    // return promise;
+    return promise;
 	}
 
   function fetchUsers() {
@@ -65,7 +65,7 @@ function MyApp() {
   return (
     <div className="container">
       <Table characterData={characters} 
-        removeCharacter={removeOneCharacter} />
+        removeCharacter={del} />
       <Form handleSubmit={updateList} />
     </div>
   )
