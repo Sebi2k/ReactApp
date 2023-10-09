@@ -27,18 +27,34 @@ function MyApp() {
 
   function updateList(person) { 
     postUser(person)
-      .then((res) => {if(res.status !== 201){Promise.reject(res.status)}})
-      .then(() => setCharacters([...characters, person]))
+      .then((res) => {if(res.status !== 201){Promise.reject(res.status)}
+          else{res.json();}
+        })
+      .then((json) => setCharacters([...characters, json]))
       .catch((error) => {
         console.log(error);
       })
   }
 
+  // function del(index) { 
+  //   removeOneCharacter(index)
+  //     .then((res) => {if(res.status !== 204){Promise.reject(res.status)}})
+  //     .then((json) => setCharacters([...characters, json]))
+  //     .catch((error) => {
+  //       console.log(error);
+  //     })
+  // }
+
   function removeOneCharacter (index) {
+    // const promise = fetch("Http://localhost:8000/users", {
+    //   method: "DELETE"})
+      
     const updated = characters.filter((character, i) => {
         return i !== index
     });
     setCharacters(updated);
+
+    // return promise;
 	}
 
   function fetchUsers() {

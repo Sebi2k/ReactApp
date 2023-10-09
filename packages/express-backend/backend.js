@@ -51,6 +51,24 @@ const findUserByNameAndJob = (name, job) => {
         .filter( (user) => user['name'] === name && user['job'] === job); 
 }
 
+function randomId(){
+  // Generate 3 random lowercase letters
+  const letters = 'abcdefghijklmnopqrstuvwxyz';
+  let randomLetters = '';
+  for (let i = 0; i < 3; i++) {
+    const randomIndex = Math.floor(Math.random() * letters.length);
+    randomLetters += letters.charAt(randomIndex);
+  }
+
+  // Generate 3 random numbers
+  const randomNumbers = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+
+  // Combine the letters and numbers
+  const randomID = randomLetters + randomNumbers;
+  
+  return randomID;
+}
+
 app.use(cors());
 app.use(express.json());
 
@@ -59,6 +77,7 @@ app.get('/', (req, res) => {
 });
 
 const addUser = (user) => {
+    user.id = randomId();
     users['users_list'].push(user);
     return user;
 }
@@ -88,7 +107,7 @@ app.delete('/users/:id', (req, res) => {
     if (result === undefined) {
         res.status(404).send('Resource not found.');
     } else {
-        res.send(result);
+        res.status(204).send(result);
     }
 });
 
@@ -105,7 +124,7 @@ app.get('/users/:id', (req, res) => {
 app.post('/users', (req, res) => {
     const userToAdd = req.body;
     addUser(userToAdd);
-    res.status(201).send();
+    res.status(201).send(userToAdd);
 });
 
 
