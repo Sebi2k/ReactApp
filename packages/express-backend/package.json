@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Sebi2k/ReactApp#readme",
   "dependencies": {
-    "cors": "^2.8.5"
+    "cors": "^2.8.5",
+    "mongoose": "^7.6.3"
   }
 }

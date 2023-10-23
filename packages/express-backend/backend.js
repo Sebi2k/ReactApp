@@ -1,6 +1,13 @@
 import express from "express";
 import cors from "cors";
-
+import User from "./user.js"
+import {
+    addUser,
+    getUsers,
+    findUserById,
+    findUserByName,
+    findUserByJob,
+  } from "./user-services.js"
 
 const app = express();
 const port = 8000;
