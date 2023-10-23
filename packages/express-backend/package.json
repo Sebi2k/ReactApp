@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/Sebi2k/ReactApp/issues"
   },
-  "homepage": "https://github.com/Sebi2k/ReactApp#readme"
+  "homepage": "https://github.com/Sebi2k/ReactApp#readme",
+  "dependencies": {
+    "cors": "^2.8.5"
+  }
 }
