@@ -27,9 +27,7 @@ function MyApp() {
 
   function updateList(person) { 
     postUser(person)
-      .then((res) => {if(res.status !== 201){Promise.reject(res.status)}
-          else{res.json();}
-        })
+      .then((res) => res.status === 201 ? res.json() : Promise.reject(res))
       .then((json) => setCharacters([...characters, json]))
       .catch((error) => {
         console.log(error);
